@@ -162,6 +162,7 @@ export default function Home() {
           </Heading>
           <Flex
             mt={['1rem', '3rem']}
+            px={['1rem', '2rem', '4rem']}
             fontSize={['12px', '20px']}
             color='subtle-text'
             align='center'
