@@ -22,7 +22,7 @@ const Column = ({ column, tasks }) => {
         px='1.5rem'
         mb='1.5rem'
       >
-        <Text fontSize='18px' fontWeight={700} color='subtle-text'>
+        <Text fontSize='18px' fontWeight={600} color='subtle-text'>
           {column.title}
         </Text>
       </Flex>
