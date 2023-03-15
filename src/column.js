@@ -41,7 +41,7 @@ const Column = ({ column, tasks }) => {
                 {(draggableProvided, draggableSnapshot) => (
                   <Flex
                     key={task.id}
-                    color='#D54A68'
+                    color='#210401'
                     mb='1rem'
                     h='72px'
                     bg='card-bg'

@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { v4 as uuid } from 'uuid'
 
-const Column = dynamic(() => import('../src/column'), { ssr: false })
+const Column = dynamic(() => import('../src/Column'), { ssr: false })
 
 const reorderColumnList = (sourceCol, startIndex, endIndex) => {
   const newTaskIds = Array.from(sourceCol.taskIds)
@@ -154,8 +154,9 @@ export default function Home() {
                 width: '100%',
                 height: '2px',
                 margin: '10px 0',
-                background: '#FFFFFF',
+                background: '#210401',
                 borderRadius: '10px',
+                borderColor: '#210401',
               }}
             />
           </Heading>
@@ -171,18 +172,22 @@ export default function Home() {
               mr='2rem'
               fontWeight={400}
               placeholder='..新增事項'
-              _placeholder={{ color: '#FFFFFF' }}
+              _placeholder={{ color: '#5F1F18' }}
+              color='#5F1F18'
               border='2px solid'
-              borderColor='#FDCED8'
+              borderColor='#5F1F18'
               focusBorderColor='#FFFFFF'
             />
             <Button
-              bg='#FDCED8'
+              fontWeight={400}
+              border='2px solid'
+              borderColor='#5F1F18'
               focusBorderColor='#FFFFFF'
+              color='#5F1F18'
               onClick={handleAddNewTask}
-              color='#D54A68'
+              bg='transparent'
             >
-              Add
+              加入
             </Button>
           </Flex>
         </Flex>
