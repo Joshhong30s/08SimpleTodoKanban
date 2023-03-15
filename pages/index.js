@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { v4 as uuid } from 'uuid'
 
-const Column = dynamic(() => import('../src/Column'), { ssr: false })
+const Column = dynamic(() => import('../src/column'), { ssr: false })
 
 const reorderColumnList = (sourceCol, startIndex, endIndex) => {
   const newTaskIds = Array.from(sourceCol.taskIds)
