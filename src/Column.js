@@ -1,13 +1,13 @@
-import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
+import { Box, Button, Flex, Spacer, Text } from '@chakra-ui/react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 
-const Column = ({ column, tasks }) => {
+const Column = ({ column, tasks, removeTask }) => {
   return (
     <Flex
       rounded='10px'
       bg='column-bg'
-      w='400px'
+      w='600px'
       flexDir='column'
       mr={['0', '0', '2rem']}
       mb={['2rem', '2rem', '0']}
@@ -22,7 +22,7 @@ const Column = ({ column, tasks }) => {
         px='1.5rem'
         mb='1.5rem'
       >
-        <Text fontSize='18px' fontWeight={600} color='subtle-text'>
+        <Text fontSize='24px' fontWeight={600} color='subtle-text'>
           {column.title}
         </Text>
       </Flex>
@@ -41,12 +41,14 @@ const Column = ({ column, tasks }) => {
                 {(draggableProvided, draggableSnapshot) => (
                   <Flex
                     key={task.id}
-                    color='#210401'
+                    color='black-text'
+                    fontSize='28px'
                     mb='1rem'
                     h='72px'
                     bg='card-bg'
                     rounded='5px'
                     p='1.5rem'
+                    alignItems='center'
                     outline='2px solid'
                     outlineColor={
                       draggableSnapshot.isDragging
@@ -63,6 +65,13 @@ const Column = ({ column, tasks }) => {
                     {...draggableProvided.dragHandleProps}
                   >
                     <Text>{task.content}</Text>
+                    <Spacer />
+                    <Button
+                      className='align-items:end'
+                      onClick={() => removeTask(task.id, column.id)}
+                    >
+                      Delete
+                    </Button>
                   </Flex>
                 )}
               </Draggable>

@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Heading,
   Input,
@@ -136,6 +137,31 @@ export default function Home() {
     setNewTaskText('')
   }
 
+  const removeTask = (taskId, columnId) => {
+    const newTaskIds = state.columns[columnId].taskIds.filter(
+      (id) => id !== taskId
+    )
+
+    const newState = {
+      ...state,
+      tasks: Object.keys(state.tasks)
+        .filter((key) => key !== taskId)
+        .reduce((obj, key) => {
+          obj[key] = state.tasks[key]
+          return obj
+        }, {}),
+      columns: {
+        ...state.columns,
+        [columnId]: {
+          ...state.columns[columnId],
+          taskIds: newTaskIds,
+        },
+      },
+    }
+
+    setState(newState)
+  }
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Flex
@@ -147,53 +173,58 @@ export default function Home() {
         pb={['2rem', '4rem']}
       >
         <Flex pb='4rem' flexDir='column' align='center'>
-          <Heading pt='2rem' fontSize={['2xl', '40px']} fontWeight={600}>
+          <Heading
+            pt='2rem'
+            fontSize={['2xl', '40px']}
+            fontWeight={600}
+            color='column-header-bg'
+          >
             小寶出生 To-Do List
-            <hr
-              style={{
-                width: '100%',
-                height: '2px',
-                margin: '10px 0',
-                background: '#210401',
-                borderRadius: '10px',
-                borderColor: '#210401',
-              }}
+            <Box
+              w='100%'
+              h='2px'
+              mt='10px'
+              mb='1rem'
+              bg='column-header-bg'
+              borderRadius='10px'
             />
           </Heading>
-          <Flex
+
+          <InputGroup
             mt={['1rem', '3rem']}
             px={['1rem', '2rem', '4rem']}
-            fontSize={['12px', '20px']}
-            color='subtle-text'
-            align='center'
+            maxW={['100%', '50%']}
           >
             <Input
               value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
-              mr='2rem'
+              onChange={handleInputChange}
               fontWeight={400}
               placeholder='..新增事項'
-              _placeholder={{ color: '#5F1F18' }}
-              color='#5F1F18'
-              border='2px solid'
-              borderColor='#5F1F18'
-              focusBorderColor='#FFFFFF'
+              _placeholder={{ color: '#0070f3' }}
+              color='black-text'
+              border='1px solid'
+              borderColor='#0070f3'
+              focusBorderColor='#0070f3'
+              borderRadius='30px'
+              pl='2.5rem'
+              pr='1rem'
             />
             <Button
               fontWeight={400}
               border='2px solid'
-              borderColor='#5F1F18'
-              focusBorderColor='#FFFFFF'
-              color='#5F1F18'
+              borderColor='#0070f3'
+              color='#0070f3'
+              borderRadius='30px'
+              bg='primary'
+              ml='1rem'
               onClick={handleAddNewTask}
-              bg='transparent'
             >
               加入
             </Button>
-          </Flex>
+          </InputGroup>
         </Flex>
         <Flex
-          justify='space-between'
+          justify='space-around'
           px={['1rem', '2rem', '4rem']}
           flexWrap={['wrap', 'wrap', 'nowrap']}
         >
@@ -209,6 +240,7 @@ export default function Home() {
                 width={['100%', '100%', '100%']}
                 mr={['0', '0', '4rem']}
                 mb={['4rem', '4rem', '2rem']}
+                removeTask={removeTask} //
               />
             )
           })}

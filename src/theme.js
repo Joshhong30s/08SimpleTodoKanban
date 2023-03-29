@@ -1,25 +1,34 @@
-import { extendTheme, theme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react'
 
-const colors = {
-  'main-bg': '#FFC9C3',
-
-  'black-text': '#210401',
-  'subtle-text': '#ffffff',
-
-  'column-bg': '#DA8C84',
-  'column-header-bg': '#904840',
-
-  'card-bg': '#FFC9C3',
-  'card-border': '#904840',
-}
-
-const fonts = {
-  heading: 'Zen Maru Gothic',
-  body: 'Zen Maru Gothic',
-}
-
-export default extendTheme({
-  ...theme,
-  colors,
-  fonts,
+const theme = extendTheme({
+  colors: {
+    'column-bg': '#F0F4F8',
+    'column-header-bg': '#0070f3',
+    'subtle-text': '#FFFFFF',
+    'black-text': '#1A1A1A',
+    'card-bg': '#FFFFFF',
+    'card-border': '#D8D8D8',
+  },
+  styles: {
+    global: {
+      'html, body': {
+        backgroundColor: 'column-bg',
+        color: 'black-text',
+      },
+    },
+  },
+  components: {
+    Box: {
+      baseStyle: {
+        borderRadius: 'md',
+      },
+    },
+    Flex: {
+      baseStyle: {
+        borderRadius: 'md',
+      },
+    },
+  },
 })
+
+export default theme
