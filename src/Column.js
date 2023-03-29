@@ -42,7 +42,7 @@ const Column = ({ column, tasks, removeTask }) => {
                   <Flex
                     key={task.id}
                     color='black-text'
-                    fontSize='28px'
+                    fontSize='24px'
                     mb='1rem'
                     h='72px'
                     bg='card-bg'
